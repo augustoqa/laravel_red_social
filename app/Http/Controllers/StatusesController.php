@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 
 class StatusesController extends Controller
 {
-    public function __construct() {
-        $this->middleware('auth');
+    public function index()
+    {
+        return Status::latest()->paginate();
     }
 
     public function store()
