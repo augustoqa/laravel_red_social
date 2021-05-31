@@ -1,6 +1,17 @@
 <template>
   <div>
-    <div v-for="status in statuses" v-text="status.body"></div>
+    <div class="card mb-3 border-0 shadow-sm" v-for="status in statuses">
+      <div class="card-body d-flex flex-column">
+        <div class="d-flex align-items-center mb-3">
+          <img src="avatar.png" alt="Avatar" class="rounded mr-3 shadow-sm" width="40">
+          <div>
+            <h5 class="mb-1">Cesar Acual</h5>
+            <div class="small text-muted">Hace una hora</div>
+          </div>
+        </div>
+        <p v-text="status.body" class="card-text text-secondary"></p>
+      </div>
+    </div>
   </div>
 </template>
 
