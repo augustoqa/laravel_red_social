@@ -10,6 +10,8 @@ use Tests\TestCase;
 
 class StatusResourceTest extends TestCase
 {
+    use RefreshDatabase;
+    
     /** @test */
     public function a_status_resources_must_have_the_necessary_fields()
     {
