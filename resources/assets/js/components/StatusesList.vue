@@ -10,8 +10,26 @@
           </div>
         </div>
         <p v-text="status.body" class="card-text text-secondary"></p>
-        <button v-if="status.is_liked" dusk="unlike-btn" @click="unlike(status)">TE GUSTA</button>
-        <button v-else dusk="like-btn" @click="like(status)">ME GUSTA</button>
+      </div>
+      <div class="card-footer p-2">
+        <button 
+          v-if="status.is_liked" 
+          @click="unlike(status)"
+          class="btn btn-link btn-sm" 
+          dusk="unlike-btn" 
+        >
+          <i class="fas fa-thumbs-up text-primary mr-1"></i>
+          <strong>TE GUSTA</strong>
+        </button>
+        <button 
+          v-else 
+          @click="like(status)"
+          class="btn btn-link btn-sm" 
+          dusk="like-btn" 
+        >
+           <i class="far fa-thumbs-up text-primary mr-1"></i>
+          ME GUSTA
+        </button>
       </div>
     </div>
   </div>
