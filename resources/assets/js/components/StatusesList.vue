@@ -10,6 +10,8 @@
           </div>
         </div>
         <p v-text="status.body" class="card-text text-secondary"></p>
+        <button v-if="status.is_liked">TE GUSTA</button>
+        <button v-else dusk="like-btn" @click="like(status)">ME GUSTA</button>
       </div>
     </div>
   </div>
@@ -25,7 +27,7 @@ export default {
   mounted() {
     axios.get('/statuses')
       .then(res => {
-        this.statuses = res.data.data    
+        this.statuses = res.data.data
       })
       .catch(err => {
         console.log(err.response.data)
@@ -34,6 +36,14 @@ export default {
     EventBus.$on('status-created', status => {
       this.statuses.unshift(status)
     })
+  },
+  methods: {
+    like(status) {
+      axios.post(`/statuses/${status.id}/likes`)
+        .then(res => {
+          status.is_liked = true
+        })
+    }
   }
 }
 </script>
