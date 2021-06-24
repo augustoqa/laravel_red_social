@@ -12,7 +12,7 @@ use Tests\TestCase;
 class StatusTest extends TestCase
 {
     use RefreshDatabase;
-    
+
     /** @test */
     function a_status_belongs_to_a_user()
     {
@@ -32,7 +32,7 @@ class StatusTest extends TestCase
     }
 
     /** @test */
-    function a_status_can_be_liked()
+    function a_status_can_be_liked_and_unliked()
     {
         $status = factory(Status::class)->create();
 
@@ -40,7 +40,11 @@ class StatusTest extends TestCase
 
         $status->like();
 
-        $this->assertEquals(1, $status->likes->count());
+        $this->assertEquals(1, $status->fresh()->likes->count());
+
+        $status->unlike();
+
+        $this->assertEquals(0, $status->fresh()->likes->count());
     }
 
     /** @test */
@@ -67,7 +71,7 @@ class StatusTest extends TestCase
         $this->assertFalse($status->isLiked());
 
         $this->actingAs( factory(User::class)->create() );
-        
+
         $this->assertFalse($status->isLiked());
 
         $status->like();
