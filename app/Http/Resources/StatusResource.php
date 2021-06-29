@@ -21,6 +21,7 @@ class StatusResource extends JsonResource
             'user_avatar' => 'avatar.png',
             'ago'         => $this->created_at->diffForHumans(),
             'is_liked'    => $this->isLiked(),
+            'likes_count' => $this->likesCount(),
         ];
     }
 }
