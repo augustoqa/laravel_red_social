@@ -50175,6 +50175,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -50451,7 +50454,15 @@ var render = function() {
             ),
             _vm._v(" "),
             _vm._l(_vm.status.comments, function(comment) {
-              return _c("div", [_vm._v(_vm._s(comment.body))])
+              return _c("div", [
+                _vm._v(
+                  "\n        " +
+                    _vm._s(comment.user_name) +
+                    "\n        " +
+                    _vm._s(comment.body) +
+                    "\n      "
+                )
+              ])
             })
           ],
           2
