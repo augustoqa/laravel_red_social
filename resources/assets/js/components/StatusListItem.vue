@@ -38,6 +38,7 @@
               class="form-control border-0 shadow-sm" 
               placeholder="Escribe un comentario..." 
               rows="1"
+              required 
             ></textarea>
             <div class="input-group-append">
               <button dusk="comment-btn" class="btn btn-primary">Enviar</button>
@@ -72,6 +73,9 @@ export default {
           this.newComment = ''
           this.comments.push(res.data.data)
         })
+        .catch((res) => {
+          console.log(err.response.data);
+        });
     }
   },
   components: {

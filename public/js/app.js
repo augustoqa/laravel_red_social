@@ -49509,6 +49509,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -49566,7 +49567,8 @@ var render = function() {
                 attrs: {
                   name: "body",
                   placeholder:
-                    "¿Qué estás pensando " + _vm.currentUser.name + "?"
+                    "¿Qué estás pensando " + _vm.currentUser.name + "?",
+                  required: ""
                 },
                 domProps: { value: _vm.body },
                 on: {
@@ -50197,6 +50199,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -50221,6 +50224,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       axios.post('/statuses/' + this.status.id + '/comments', { body: this.newComment }).then(function (res) {
         _this.newComment = '';
         _this.comments.push(res.data.data);
+      }).catch(function (res) {
+        console.log(err.response.data);
       });
     }
   },
@@ -50497,7 +50502,8 @@ var render = function() {
                       attrs: {
                         name: "comment",
                         placeholder: "Escribe un comentario...",
-                        rows: "1"
+                        rows: "1",
+                        required: ""
                       },
                       domProps: { value: _vm.newComment },
                       on: {
