@@ -22,4 +22,9 @@ Route::post('statuses/{status}/comments', 'StatusCommentsController@store')
     ->name('statuses.comments.store')
     ->middleware('auth');
 
+// Comments Likes routes
+Route::post('comments/{comment}/likes', 'CommentLikesController@store')
+    ->name('comments.likes.store')
+    ->middleware('auth');
+
 Route::auth();
