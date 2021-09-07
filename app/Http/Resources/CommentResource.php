@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CommentResource extends JsonResource
@@ -17,9 +18,7 @@ class CommentResource extends JsonResource
         return [
             'id'          => $this->id,
             'body'        => $this->body,
-            'user_name'   => $this->user->name,
-            'user_link'   => $this->user->link(),
-            'user_avatar' => 'avatar.png',
+            'user'        => UserResource::make($this->user),
             'likes_count' => $this->likesCount(),
             'is_liked'    => $this->isLiked(),
         ];
