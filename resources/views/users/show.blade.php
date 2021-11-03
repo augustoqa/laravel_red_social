@@ -11,7 +11,9 @@
 							{{ $user->name }}
 						</div>
                         <friendship-btn
+                            dusk="request-friendship"
                             class="btn btn-primary btn-block"
+                            friendship-status="{{ $friendshipStatus }}"
                             :recipient="{{ $user }}"
                         ></friendship-btn>
 					</div>
