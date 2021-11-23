@@ -50784,7 +50784,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -50832,13 +50832,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         getMethod: function getMethod() {
-            return this.localFriendshipStatus === 'pending' ? 'delete' : 'post';
+            return this.localFriendshipStatus === 'pending' || this.localFriendshipStatus === 'accepted' ? 'delete' : 'post';
         }
     },
     computed: {
         getText: function getText() {
             if (this.localFriendshipStatus === 'pending') {
                 return 'Cancelar solicitud';
+            }
+            if (this.localFriendshipStatus === 'accepted') {
+                return 'Eliminar de mis amigos';
+            }
+            if (this.localFriendshipStatus === 'denied') {
+                return 'Solicitud denegada';
             }
             return 'Solicitar amistad';
         }
