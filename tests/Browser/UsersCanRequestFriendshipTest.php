@@ -33,6 +33,31 @@ class UsersCanRequestFriendshipTest extends DuskTestCase
     }
 
     /** @test */
+    function guests_cannot_create_friendship_requests()
+    {
+        $recipient = factory(User::class)->create();
+
+        $this->browse(function (Browser $browser) use ($recipient) {
+            $browser->visit(route('users.show', $recipient))
+                    ->press('@request-friendship')
+                    ->assertPathIs('/login');
+        });
+    }
+
+    /** @test */
+    function a_user_cannot_send_friend_request_to_itself()
+    {
+        $user = factory(User::class)->create();
+
+        $this->browse(function (Browser $browser) use ($user) {
+            $browser->loginAs($user)
+                    ->visit(route('users.show', $user))
+                    ->assertMissing('@request-friendship')
+                    ->assertSee('Eres tú');
+        });
+    }
+
+    /** @test */
     function senders_can_delete_accepted_friendship_requests()
     {
         $sender = factory(User::class)->create();
