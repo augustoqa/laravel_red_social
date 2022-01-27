@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\StatusResource;
 use App\Models\Status;
+use App\Events\StatusCreated;
 use Illuminate\Http\Request;
 
 class StatusesController extends Controller
@@ -15,15 +16,16 @@ class StatusesController extends Controller
         );
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        \request()->validate(['body' => 'required|min:5']);
+        $validStatus = $request->validate(['body' => 'required|min:5']);
 
-        $status = Status::create([
-            'body' => request('body'),
-            'user_id' => auth()->id()
-        ]);
+        $status = $request->user()->statuses()->create($validStatus);
 
-        return StatusResource::make($status);
+        $statusResource = StatusResource::make($status);
+
+        StatusCreated::dispatch($statusResource);
+
+        return $statusResource;
     }
 }
